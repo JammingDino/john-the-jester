@@ -14,6 +14,14 @@ config/name="The Fool"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ResolutionManager="*uid://6ogec33ms6u4"
+
+[global_group]
+
+ViewportContainer=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
