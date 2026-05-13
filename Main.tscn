@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cco50de3bis0y"]
 
 [ext_resource type="Shader" uid="uid://dmwbfp8gqbx21" path="res://Script/edge_detection.gdshader" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://cg2ljjbvr45r8" path="res://Assets/court room but better.glb" id="1_uu6xs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg2q"]
 albedo_color = Color(0.42903125, 0.42903125, 0.42903125, 1)
@@ -8,6 +9,7 @@ uv1_triplanar = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_uu6xs"]
 flip_faces = true
+size = Vector2(3, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r0du0"]
 render_priority = 0
@@ -80,11 +82,17 @@ stretch = true
 stretch_shrink = 4
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=904494389]
+handle_input_locally = false
 size = Vector2i(288, 162)
+render_target_update_mode = 4
 
 [node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1880823944]
 
+[node name="court room but better" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1669611352 instance=ExtResource("1_uu6xs")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1518387614]
+visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Node3D/CSGCombiner3D" unique_id=1351842656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
@@ -115,8 +123,6 @@ environment = SubResource("Environment_cm0pq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1081048652]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_energy = 0.0
-light_negative = true
 shadow_enabled = true
 directional_shadow_mode = 0
 
