@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://lvr4pme8a85v"]
+
+[ext_resource type="PackedScene" uid="uid://cg2ljjbvr45r8" path="res://Assets/Coutroom/court room but better.glb" id="1_w5gk8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg2q"]
+albedo_color = Color(0.42903125, 0.42903125, 0.42903125, 1)
+uv1_triplanar = true
+
+[node name="Coutroom" type="Node3D" unique_id=1316503235]
+
+[node name="court room but better" parent="." unique_id=1441266490 instance=ExtResource("1_w5gk8")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=850281318]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1848016120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=336783070]
+radius = 20.0
+height = 0.1
+material = SubResource("StandardMaterial3D_rxg2q")

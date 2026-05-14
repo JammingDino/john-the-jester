@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cg2ljjbvr45r8"
-path="res://.godot/imported/court room but better.glb-89e1dc41c8859114c9c9de6933d202a4.scn"
+path="res://.godot/imported/court room but better.glb-5b6498051bdf642449af0e4f28aa1967.scn"
 
 [deps]
 
-source_file="res://Assets/court room but better.glb"
-dest_files=["res://.godot/imported/court room but better.glb-89e1dc41c8859114c9c9de6933d202a4.scn"]
+source_file="res://Assets/Coutroom/court room but better.glb"
+dest_files=["res://.godot/imported/court room but better.glb-5b6498051bdf642449af0e4f28aa1967.scn"]
 
 [params]
 

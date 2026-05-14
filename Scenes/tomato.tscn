@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qguijaplaxnh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fo0l6"]
+albedo_color = Color(0.8765217, 0, 0.060148932, 1)
+
+[node name="Tomato" type="CSGSphere3D" unique_id=179465891]
+radius = 0.15
+radial_segments = 6
+rings = 4
+smooth_faces = false
+material = SubResource("StandardMaterial3D_fo0l6")

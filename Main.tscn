@@ -2,11 +2,11 @@
 
 [ext_resource type="Shader" uid="uid://dmwbfp8gqbx21" path="res://Script/edge_detection.gdshader" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dk35fctqxji3h" path="res://Script/main.gd" id="1_r0du0"]
-[ext_resource type="PackedScene" uid="uid://cg2ljjbvr45r8" path="res://Assets/court room but better.glb" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://lvr4pme8a85v" path="res://Scenes/coutroom.tscn" id="2_r0du0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg2q"]
-albedo_color = Color(0.42903125, 0.42903125, 0.42903125, 1)
-uv1_triplanar = true
+[sub_resource type="Environment" id="Environment_cm0pq"]
+ssao_enabled = true
+ssil_enabled = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_uu6xs"]
 flip_faces = true
@@ -46,7 +46,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 19.966667),
+"times": PackedFloat32Array(0, 20),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
@@ -57,10 +57,6 @@ _data = {
 &"RESET": SubResource("Animation_glv2v"),
 &"loop": SubResource("Animation_uu6xs")
 }
-
-[sub_resource type="Environment" id="Environment_cm0pq"]
-ssao_enabled = true
-ssil_enabled = true
 
 [node name="Control" type="Control" unique_id=86942188]
 layout_mode = 3
@@ -87,44 +83,31 @@ handle_input_locally = false
 size = Vector2i(288, 162)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1880823944]
-
-[node name="court room but better" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1669611352 instance=ExtResource("1_uu6xs")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1518387614]
+[node name="Coutroom" parent="SubViewportContainer/SubViewport" unique_id=1316503235 instance=ExtResource("2_r0du0")]
 visible = false
 
-[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Node3D/CSGCombiner3D" unique_id=1351842656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1444830718]
+environment = SubResource("Environment_cm0pq")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SubViewportContainer/SubViewport/Node3D/CSGCombiner3D" unique_id=1191874495]
-radius = 20.0
-height = 0.1
-material = SubResource("StandardMaterial3D_rxg2q")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1081048652]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
-[node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1837427807]
+[node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1837427807 groups=["CamPivot"]]
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D/Pivot" unique_id=1802090236]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Pivot" unique_id=1802090236]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 2.456744e-07, 3.711636, 3.5949063)
 projection = 1
 size = 4.0
 near = 0.001
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D/Pivot/Camera3D" unique_id=163795296]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Pivot/Camera3D" unique_id=163795296]
 mesh = SubResource("QuadMesh_uu6xs")
 surface_material_override/0 = SubResource("ShaderMaterial_r0du0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Node3D/Pivot" unique_id=86574259]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Pivot" unique_id=86574259]
 libraries/ = SubResource("AnimationLibrary_r0du0")
 autoplay = &"loop"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1444830718]
-environment = SubResource("Environment_cm0pq")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1081048652]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=983754813]
 layout_mode = 1

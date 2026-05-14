@@ -1,18 +1,25 @@
 extends Control
 
+var is_busy: bool = false
 var selected_button: int = 0
 var indicator_y: float = 0.0
 var indicator_velocity: float = 0.0
-const SPRING_STRENGTH: float = 300.0
-const DAMPING: float = 0.8
+const SPRING_STRENGTH: float = 400.0
+const DAMPING: float = 0.9
 const BUTTON_HEIGHT: float = 30.0
 const BUTTON_SPACING: float = 10.0
 
+@onready var menu_ui_root: VBoxContainer = $VBoxContainer
 @onready var indicator: ColorRect = $VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/Indicator
 @onready var buttons: Array[Button] = [
 	$VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Play,
 	$VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Options,
 	$VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit
+]
+
+var current_level = 0
+@onready var levels: Array[String] = [
+	"res://Scenes/tomato_catcher.tscn"
 ]
 
 var hover_stylebox: StyleBox
@@ -22,8 +29,25 @@ func _ready() -> void:
 	indicator.position.y = _button_y_position(selected_button)
 	_update_button_states()
 
+func _show_ui() -> void:
+	menu_ui_root.show()
+
+func _hide_ui() -> void:
+	menu_ui_root.hide()
+
+
+func _on_resume_menu() -> void:
+	is_busy = false
+	_show_ui()
+
 func _on_play_pressed() -> void:
-	pass
+	is_busy = true
+	_hide_ui()
+	
+	current_level = (current_level+1) % len(levels)
+	var game_scene = load(levels[current_level]).instantiate()
+	get_tree().root.add_child(game_scene)
+	game_scene.tree_exited.connect(_on_resume_menu)
 
 func _on_options_pressed() -> void:
 	pass
@@ -47,6 +71,9 @@ func _on_quit_mouse_entered() -> void:
 	_update_button_states()
 
 func _process(delta: float) -> void:
+	if is_busy:
+		return
+	
 	var target_y = _button_y_position(selected_button)
 	
 	var displacement = target_y - indicator_y
