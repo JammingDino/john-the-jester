@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cco50de3bis0y"]
 
 [ext_resource type="Shader" uid="uid://dmwbfp8gqbx21" path="res://Script/edge_detection.gdshader" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://dk35fctqxji3h" path="res://Script/main.gd" id="1_r0du0"]
 [ext_resource type="PackedScene" uid="uid://cg2ljjbvr45r8" path="res://Assets/court room but better.glb" id="1_uu6xs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg2q"]
@@ -16,12 +17,11 @@ render_priority = 0
 shader = ExtResource("1_glv2v")
 shader_parameter/lightIntensity = 1.25
 shader_parameter/lineAlpha = 0.7
-shader_parameter/useLighting = false
+shader_parameter/useLighting = true
 shader_parameter/lineHighlight = 0.2
 shader_parameter/lineShadow = 0.55
 
 [sub_resource type="Animation" id="Animation_glv2v"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -37,7 +37,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_uu6xs"]
 resource_name = "loop"
-length = 10.0
+length = 20.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,7 +46,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10),
+"times": PackedFloat32Array(0, 19.966667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
@@ -69,6 +69,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_r0du0")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1792213646 groups=["ViewportContainer"]]
 texture_filter = 1
@@ -124,7 +125,6 @@ environment = SubResource("Environment_cm0pq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1081048652]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-directional_shadow_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=983754813]
 layout_mode = 1
@@ -159,18 +159,38 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=2106326182]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=891735161]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1426482902]
+layout_mode = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Indicator" type="ColorRect" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=429021648]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=2106326182]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Play" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=39419592]
+[node name="Play" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=39419592]
 layout_mode = 2
 text = "Play"
 
-[node name="Options" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=725027501]
+[node name="Options" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=725027501]
 layout_mode = 2
 text = "Options"
 
-[node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1825176112]
+[node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1825176112]
 layout_mode = 2
 text = "Quit"
+
+[connection signal="mouse_entered" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
