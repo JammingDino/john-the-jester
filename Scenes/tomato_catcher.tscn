@@ -21,14 +21,26 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Facing:scale")
+tracks/0/path = NodePath("Facing/Visuals:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.050166152, 0.09991578, 0.2),
+"times": PackedFloat32Array(0, 0.051347826, 0.10130787, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 0, 1), Vector3(0, 0, 0), Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(1, 0.01, 1), Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Facing/Area3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10269565),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_fo0l6"]
@@ -36,7 +48,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Facing:scale")
+tracks/0/path = NodePath("Facing/Visuals:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,6 +56,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Facing/Area3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpsqq"]
@@ -69,15 +93,17 @@ script = ExtResource("2_fo0l6")
 
 [node name="Facing" type="Node3D" parent="Player" unique_id=400386686]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Facing" unique_id=771743059]
+[node name="Visuals" type="Node3D" parent="Player/Facing" unique_id=1216685091]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Facing/Visuals" unique_id=771743059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.32544047)
 mesh = SubResource("BoxMesh_kew4r")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/Facing" unique_id=1944409803]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/Facing/Visuals" unique_id=1944409803]
 transform = Transform3D(0.8658682, 0, -0.50027204, 0, 1, 0, 0.50027204, 0, 0.8658682, -0.34746778, 0, 0.23235106)
 mesh = SubResource("BoxMesh_kew4r")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Player/Facing" unique_id=375131154]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Player/Facing/Visuals" unique_id=375131154]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.347, 0, 0.232)
 mesh = SubResource("BoxMesh_kew4r")
 
@@ -87,6 +113,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2577336)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Facing/Area3D" unique_id=1265427021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016357422, -0.013748169)
 shape = SubResource("BoxShape3D_kew4r")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=307007021]
 libraries/ = SubResource("AnimationLibrary_jpsqq")
+
+[node name="Control" type="Control" parent="." unique_id=892957402]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1960863488]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
+
+[node name="Counter" type="Label" parent="Control/MarginContainer" unique_id=1604198786]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
