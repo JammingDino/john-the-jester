@@ -4,7 +4,8 @@ var input_dir : Vector2 = Vector2(1, 0)
 var current_angle : float = 0.0
 var angle_velocity : float = 0.0
 const SPRING_STRENGTH : float = 400.0
-const DAMPING : float = 0.9
+const DAMPING : float = 0.85
+const REF_FPS: float = 60.0
 
 @onready var facing: Node3D = $Facing
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -30,7 +31,7 @@ func _manage_dir(delta) -> void:
 	
 	var acceleration = displacement * SPRING_STRENGTH
 	angle_velocity += acceleration * delta
-	angle_velocity *= DAMPING
+	angle_velocity *= pow(DAMPING, delta * REF_FPS)
 	current_angle += angle_velocity * delta
 	current_angle = wrapf(current_angle, -PI, PI)
 	

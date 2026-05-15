@@ -5,7 +5,8 @@ var selected_button: int = 0
 var indicator_y: float = 0.0
 var indicator_velocity: float = 0.0
 const SPRING_STRENGTH: float = 400.0
-const DAMPING: float = 0.9
+const DAMPING: float = 0.85
+const REF_FPS: float = 60.0
 const BUTTON_HEIGHT: float = 30.0
 const BUTTON_SPACING: float = 10.0
 
@@ -79,7 +80,7 @@ func _process(delta: float) -> void:
 	var displacement = target_y - indicator_y
 	var acceleration = displacement * SPRING_STRENGTH
 	indicator_velocity += acceleration * delta
-	indicator_velocity *= DAMPING
+	indicator_velocity *= pow(DAMPING, delta * REF_FPS)
 	indicator_y += indicator_velocity * delta
 	
 	indicator.position.y = indicator_y
