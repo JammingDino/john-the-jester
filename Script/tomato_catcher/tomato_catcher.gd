@@ -14,16 +14,37 @@ var time_elapsed: float = 0.0
 var active_tomatoes: Array[Node3D] = []
 
 @onready var catch_area: Area3D = $Player/Facing/Area3D
-@onready var counter: Label = $Control/MarginContainer/Counter
+@onready var counter: Label = $Control/MarginContainer/VBoxContainer/Counter
+@onready var restart_prompt: Label = $Control/MarginContainer/VBoxContainer/MarginContainer/RestartPrompt
+
+const SAVE_FILE = "user://tomato_highscore.save"
 
 var score: int = 0
+var high_score: int = 0
 var game_over: bool = false
 
+func load_high_score() -> void:
+	if FileAccess.file_exists(SAVE_FILE):
+		var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+		if file:
+			high_score = file.get_32()
+			file.close()
+
+func save_high_score() -> void:
+	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	if file:
+		file.store_32(high_score)
+		file.close()
+
+func update_score_display() -> void:
+	if counter:
+		counter.text = str(score) + " / " + str(high_score)
+
 func _ready() -> void:
+	load_high_score()
 	if catch_area:
 		catch_area.area_entered.connect(_on_catch_area_entered)
-	if counter:
-		counter.text = str(score)
+	update_score_display()
 
 func _on_catch_area_entered(area: Area3D) -> void:
 	var parent = area.get_parent()
@@ -32,8 +53,8 @@ func _on_catch_area_entered(area: Area3D) -> void:
 		active_tomatoes.erase(parent)
 		
 		score += 1
+		update_score_display()
 		if counter:
-			counter.text = str(score)
 			counter.pivot_offset = counter.size / 2.0
 			
 			var tween = create_tween()
@@ -48,6 +69,10 @@ func _on_catch_area_entered(area: Area3D) -> void:
 
 func _process(delta: float) -> void:
 	if game_over:
+		
+		if Input.is_action_just_pressed("ui_accept"):
+			self.queue_free()
+		
 		return
 		
 	time_elapsed += delta
@@ -89,6 +114,12 @@ func _process(delta: float) -> void:
 
 func _trigger_game_over() -> void:
 	game_over = true
+	
+	if score > high_score:
+		high_score = score
+		save_high_score()
+		update_score_display()
+		
 	print("Game Over! Tomato hit the center! Final score: ", score)
 	
 	# Optional juiciness for Game Over UI (flashing the counter red)
@@ -102,6 +133,8 @@ func _trigger_game_over() -> void:
 		if is_instance_valid(tomato):
 			tomato.queue_free()
 	active_tomatoes.clear()
+	
+	restart_prompt.visible = true
 
 func spawn_tomato() -> void:
 	if not tomato_scene:
