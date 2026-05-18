@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://0irlodbtfj7o" path="res://Script/flappy_bird/player.gd" id="2_uosvl"]
 [ext_resource type="Material" uid="uid://ct3fm6t4vtop" path="res://Assets/MissingMaterial.tres" id="2_w821v"]
 [ext_resource type="PackedScene" uid="uid://cie7328pgcevi" path="res://Scenes/the_fool.tscn" id="4_hrnci"]
+[ext_resource type="PackedScene" uid="uid://pipe001" path="res://Scenes/pipe.tscn" id="5_pipe001"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kew4r"]
 size = Vector3(1, 0.15551758, 0.94589037)
@@ -27,18 +28,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fo0l6"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Facing/Area3D/CollisionShape3D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpsqq"]
 _data = {
@@ -48,6 +37,7 @@ _data = {
 
 [node name="FlappyBird" type="Node3D" unique_id=414616707]
 script = ExtResource("1_3yi32")
+pipe_scene = ExtResource("5_pipe001")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1301522147]
 material_override = ExtResource("2_w821v")
@@ -68,7 +58,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2577336)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Facing/Area3D" unique_id=1265427021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017233491, -0.22682723)
 shape = SubResource("BoxShape3D_kew4r")
-disabled = true
 
 [node name="the fool" parent="Player/Facing" unique_id=1594532261 instance=ExtResource("4_hrnci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.505, 0)

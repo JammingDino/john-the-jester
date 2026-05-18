@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://pipe001"]
+
+[sub_resource type="CubeMesh" id="pipe_mesh"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="pipe_shape"]
+size = Vector3(1, 1, 1)
+
+[node name="Pipe" type="Node3D"]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
+mesh = SubResource("pipe_mesh")
+
+[node name="Area3D" type="Area3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("pipe_shape")
