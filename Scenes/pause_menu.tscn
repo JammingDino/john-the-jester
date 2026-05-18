@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://cc28ef1lq60dt"]
+
+[ext_resource type="Script" uid="uid://b3vwx2b2p26on" path="res://Script/pause_menu.gd" id="1_4u8vw"]
+
+[node name="PauseMenu" type="Control" unique_id=1007579107]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4u8vw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1943151747]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1806793426]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.5
+offset_top = -117.0
+offset_right = 202.5
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=652781193]
+layout_mode = 2
+theme_override_font_sizes/font_size = 112
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=40241142]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1313814667]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=1809236702]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=551283705]
+layout_mode = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Indicator" type="ColorRect" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=1778788517]
+custom_minimum_size = Vector2(5, 20)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1463702257]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Resume" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=891984508]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="Options" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=55924731]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=578470095]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=884843433]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"

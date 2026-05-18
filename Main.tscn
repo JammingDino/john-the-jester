@@ -7,6 +7,9 @@
 [sub_resource type="Environment" id="Environment_cm0pq"]
 ssao_enabled = true
 ssil_enabled = true
+glow_enabled = true
+glow_bloom = 0.4
+glow_blend_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_uu6xs"]
 flip_faces = true
@@ -125,7 +128,7 @@ theme_override_constants/separation = 50
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1540905901]
 layout_mode = 2
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 112
 text = "John The Jester"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -160,14 +163,17 @@ theme_override_constants/separation = 10
 
 [node name="Play" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=39419592]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Play"
 
 [node name="Options" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=725027501]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Options"
 
 [node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1825176112]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [connection signal="mouse_entered" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]

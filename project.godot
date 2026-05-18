@@ -18,11 +18,24 @@ config/icon="res://icon.svg"
 [autoload]
 
 ResolutionManager="*uid://6ogec33ms6u4"
+MenuManager="*uid://ca4cygkjt4vb6"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "purple",
+"res://Scenes/": "blue",
+"res://Script/": "green"
+}
 
 [global_group]
 
 ViewportContainer=""
 CamPivot=""
+
+[gui]
+
+theme/custom_font="uid://csns52fioiejb"
 
 [input]
 

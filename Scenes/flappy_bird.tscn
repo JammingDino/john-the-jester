@@ -139,7 +139,7 @@ layout_mode = 2
 
 [node name="Counter" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=1604198786]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 text = "0 / 100"
 horizontal_alignment = 1
 
@@ -148,9 +148,9 @@ layout_mode = 2
 theme_override_constants/margin_top = 50
 
 [node name="RestartPrompt" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer" unique_id=460062181]
-visible = false
 layout_mode = 2
-text = "Press keys"
+theme_override_font_sizes/font_size = 60
+text = "Press a Key"
 horizontal_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1116973105]
