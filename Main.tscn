@@ -84,7 +84,6 @@ size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="Coutroom" parent="SubViewportContainer/SubViewport" unique_id=1316503235 instance=ExtResource("2_r0du0")]
-visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1444830718]
 environment = SubResource("Environment_cm0pq")
@@ -96,7 +95,7 @@ shadow_enabled = true
 [node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1837427807 groups=["CamPivot"]]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Pivot" unique_id=1802090236]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 2.456744e-07, 3.711636, 3.5949063)
+transform = Transform3D(1, 0, 0, 0, 0.7660444, 0.6427875, 0, -0.6427875, 0.7660444, 0, 3.712, 4)
 projection = 1
 size = 4.0
 near = 0.001

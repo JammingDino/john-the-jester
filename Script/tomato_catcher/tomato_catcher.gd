@@ -16,12 +16,20 @@ var active_tomatoes: Array[Node3D] = []
 @onready var catch_area: Area3D = $Player/Facing/Area3D
 @onready var counter: Label = $Control/MarginContainer/VBoxContainer/Counter
 @onready var restart_prompt: Label = $Control/MarginContainer/VBoxContainer/MarginContainer/RestartPrompt
+@onready var animation_player: AnimationPlayer = $"Player/Facing/the fool/AnimationPlayer"
+
 
 const SAVE_FILE = "user://tomato_highscore.save"
 
 var score: int = 0
 var high_score: int = 0
 var game_over: bool = false
+
+var cam_overides: Dictionary = {
+	"rotation" : Vector3(-45, 0, 0),
+	"spinning" : true,
+	"distance" : Vector3(0, 3.712, 3.595)
+}
 
 func load_high_score() -> void:
 	if FileAccess.file_exists(SAVE_FILE):
@@ -74,7 +82,7 @@ func _process(delta: float) -> void:
 			self.queue_free()
 		
 		return
-		
+	
 	time_elapsed += delta
 	
 	# Increase difficulty over time
@@ -135,6 +143,8 @@ func _trigger_game_over() -> void:
 	active_tomatoes.clear()
 	
 	restart_prompt.visible = true
+	
+	animation_player.play("dead")
 
 func spawn_tomato() -> void:
 	if not tomato_scene:

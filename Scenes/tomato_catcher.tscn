@@ -3,16 +3,13 @@
 [ext_resource type="Material" uid="uid://ct3fm6t4vtop" path="res://Assets/MissingMaterial.tres" id="1_kew4r"]
 [ext_resource type="Script" uid="uid://dno033qeg05re" path="res://Script/tomato_catcher/tomato_catcher.gd" id="1_tomato_script"]
 [ext_resource type="Script" uid="uid://bg0yfklbthd84" path="res://Script/tomato_catcher/player.gd" id="2_fo0l6"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kew4r"]
-radius = 0.2
-height = 1.0
+[ext_resource type="PackedScene" uid="uid://cie7328pgcevi" path="res://Scenes/the_fool.tscn" id="4_bhtul"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kew4r"]
 size = Vector3(0.4, 0.3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kew4r"]
-size = Vector3(1, 0.96728516, 0.23776245)
+size = Vector3(1, 0.96728516, 0.35143661)
 
 [sub_resource type="Animation" id="Animation_kew4r"]
 resource_name = "Bite"
@@ -86,14 +83,14 @@ material_override = ExtResource("1_kew4r")
 radius = 3.0
 height = 0.1
 
-[node name="Player" type="MeshInstance3D" parent="." unique_id=2125569772]
+[node name="Player" type="Node3D" parent="." unique_id=1933811622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
-mesh = SubResource("CapsuleMesh_kew4r")
 script = ExtResource("2_fo0l6")
 
 [node name="Facing" type="Node3D" parent="Player" unique_id=400386686]
 
 [node name="Visuals" type="Node3D" parent="Player/Facing" unique_id=1216685091]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Facing/Visuals" unique_id=771743059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.32544047)
@@ -111,9 +108,60 @@ mesh = SubResource("BoxMesh_kew4r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2577336)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Facing/Area3D" unique_id=1265427021]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016357422, -0.013748169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016357422, -0.026994705)
 shape = SubResource("BoxShape3D_kew4r")
 disabled = true
+
+[node name="the fool" parent="Player/Facing" unique_id=1594532261 instance=ExtResource("4_bhtul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.505, 0)
+
+[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(1594532261, 1231401966) index="0" unique_id=1190954239]
+bones/0/position = Vector3(0, 0.35611382, 0)
+bones/1/rotation = Quaternion(-0.027577283, 8.378716e-08, -2.3115019e-09, 0.9996197)
+bones/2/rotation = Quaternion(0.11111502, 2.4510307e-08, 2.1367544e-08, 0.99380755)
+bones/3/rotation = Quaternion(0.0030857176, -7.7762174e-08, 4.295435e-10, 0.9999953)
+bones/4/rotation = Quaternion(-0.052939646, 4.6014694e-08, -5.691987e-09, 0.99859774)
+bones/5/rotation = Quaternion(-0.039976556, -0.074559435, -0.8431189, 0.53103054)
+bones/6/rotation = Quaternion(-0.0011827244, -0.0013337788, -0.33794802, 0.94116306)
+bones/7/position = Vector3(2.8668217e-09, 0.101547174, -0.04666104)
+bones/7/rotation = Quaternion(-0.008887922, -0.3693057, 0.92923504, 0.0075169443)
+bones/8/rotation = Quaternion(0.15560676, -0.026408553, 0.0086214775, 0.98742837)
+bones/9/position = Vector3(-9.886303e-10, 0.08867292, 0.016091647)
+bones/10/position = Vector3(-9.722388e-10, 0.06280581, 0.015824413)
+bones/11/position = Vector3(0.02333499, 0.0765194, 0.016081844)
+bones/12/rotation = Quaternion(-0.041146677, 0.07369739, 0.83438927, 0.5446746)
+bones/13/rotation = Quaternion(-0.0007289402, 0.0014959334, 0.3787717, 0.92548865)
+bones/14/position = Vector3(-0.02333499, 0.0765194, 0.016081842)
+bones/16/rotation = Quaternion(-0.062800646, 0.20000805, -0.3193685, 0.9241519)
+bones/17/rotation = Quaternion(0.6662948, -0.12319044, 0.018318769, 0.7352141)
+bones/18/rotation = Quaternion(0.04239692, -0.039954428, -0.137977, 0.98872066)
+bones/19/rotation = Quaternion(0.185057, -0.100997776, -0.38261306, 0.89953357)
+bones/20/rotation = Quaternion(0.016317263, -0.046955876, 0.8700547, 0.4904423)
+bones/21/rotation = Quaternion(-0.08780824, -0.22019875, 0.32437995, 0.91574013)
+bones/22/rotation = Quaternion(0.70275503, 0.115559995, -0.024431944, 0.70155853)
+bones/23/rotation = Quaternion(0.039612763, 0.021930246, 0.14573063, 0.98828775)
+bones/24/rotation = Quaternion(0.12898523, 0.03745223, 0.29658556, 0.9455143)
+bones/25/rotation = Quaternion(-0.25253093, 0.30356684, 0.9077362, -0.1417401)
+bones/25/scale = Vector3(1.0000207, 0.99999774, 1.0000086)
+bones/26/rotation = Quaternion(-0.49865383, -0.00012932999, -0.3621379, 0.78752816)
+bones/26/scale = Vector3(1.0000013, 0.9999867, 1.0000005)
+bones/27/rotation = Quaternion(0.83198535, -0.119888805, 0.22493647, 0.49277848)
+bones/27/scale = Vector3(0.99999887, 1.0000196, 0.9999908)
+bones/28/rotation = Quaternion(0.2619492, 0.3045061, 0.9052414, 0.13855264)
+bones/28/scale = Vector3(1.0000209, 0.99999785, 1.0000085)
+bones/29/rotation = Quaternion(-0.49865365, 0.00012928249, 0.36213765, 0.7875284)
+bones/29/scale = Vector3(1.0000015, 0.99998665, 1.0000005)
+bones/30/rotation = Quaternion(0.8313256, 0.12897176, -0.2287329, 0.48984224)
+bones/30/scale = Vector3(0.9999988, 1.0000196, 0.99999076)
+bones/31/position = Vector3(-0.2876721, 0.2916827, 0.58200705)
+bones/32/position = Vector3(0.070499726, 0.03141713, -0.009694925)
+bones/32/rotation = Quaternion(0.0054758065, -0.70059, 0.71352285, -0.005376555)
+bones/33/position = Vector3(0.27487808, 0.07703203, 0.5536632)
+bones/34/position = Vector3(-0.070499726, 0.03141713, -0.009694925)
+bones/34/rotation = Quaternion(-0.0054758065, -0.70059, 0.71352285, 0.005376555)
+
+[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=226332638]
+autoplay = &"about to eat tomato"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=307007021]
 libraries/ = SubResource("AnimationLibrary_jpsqq")
@@ -151,3 +199,5 @@ visible = false
 layout_mode = 2
 text = "Press keys"
 horizontal_alignment = 1
+
+[editable path="Player/Facing/the fool"]

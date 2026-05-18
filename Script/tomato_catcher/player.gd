@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends Node3D
 
 var input_dir : Vector2 = Vector2(1, 0)
 var current_angle : float = 0.0
@@ -9,9 +9,12 @@ const REF_FPS: float = 60.0
 
 @onready var facing: Node3D = $Facing
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var the_fool_animation_player: AnimationPlayer = $"Facing/the fool/AnimationPlayer"
 
 
 func _process(delta: float) -> void:
+	if get_node("..").game_over:
+		return
 	
 	_manage_bite()
 	_manage_dir(delta)
@@ -19,6 +22,10 @@ func _process(delta: float) -> void:
 func _manage_bite() -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		animation_player.play("Bite")
+		the_fool_animation_player.speed_scale = 2
+		the_fool_animation_player.play("eat tomato for real")
+		await get_tree().create_timer(0.4).timeout
+		the_fool_animation_player.speed_scale = 1
 
 func _manage_dir(delta) -> void:
 	var dir = Input.get_vector("ui_right", "ui_left", "ui_down", "ui_up")
