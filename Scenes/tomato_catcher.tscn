@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dno033qeg05re" path="res://Script/tomato_catcher/tomato_catcher.gd" id="1_tomato_script"]
 [ext_resource type="Script" uid="uid://bg0yfklbthd84" path="res://Script/tomato_catcher/player.gd" id="2_fo0l6"]
 [ext_resource type="PackedScene" uid="uid://cie7328pgcevi" path="res://Scenes/the_fool.tscn" id="4_bhtul"]
+[ext_resource type="AudioStream" uid="uid://p5wqbnvx4cft" path="res://Assets/Sounds/Dead.ogg" id="5_2xaur"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kew4r"]
 size = Vector3(0.4, 0.3, 0.1)
@@ -195,5 +196,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Press keys"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=799853560]
+stream = ExtResource("5_2xaur")
 
 [editable path="Player/Facing/the fool"]

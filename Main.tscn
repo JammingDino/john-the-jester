@@ -4,7 +4,14 @@
 [ext_resource type="Script" uid="uid://dk35fctqxji3h" path="res://Script/main.gd" id="1_r0du0"]
 [ext_resource type="PackedScene" uid="uid://lvr4pme8a85v" path="res://Scenes/coutroom.tscn" id="2_r0du0"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cm0pq"]
+
+[sub_resource type="Sky" id="Sky_trn2v"]
+sky_material = SubResource("ProceduralSkyMaterial_cm0pq")
+
 [sub_resource type="Environment" id="Environment_cm0pq"]
+background_mode = 2
+sky = SubResource("Sky_trn2v")
 ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true

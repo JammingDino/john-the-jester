@@ -51,11 +51,17 @@ func _process(delta: float) -> void:
 		indicator.position.y = indicator_y
 	
 	if Input.is_action_just_pressed("ui_up"):
+		var old = selected_button
 		selected_button = max(0, selected_button - 1)
+		if old != selected_button:
+			MenuManager.play_hover_sound()
 		_reset_spring()
 		_update_button_states()
 	elif Input.is_action_just_pressed("ui_down"):
+		var old = selected_button
 		selected_button = min(buttons.size() - 1, selected_button + 1)
+		if old != selected_button:
+			MenuManager.play_hover_sound()
 		_reset_spring()
 		_update_button_states()
 	
@@ -77,10 +83,13 @@ func _update_button_states() -> void:
 
 func _on_button_mouse_entered(index: int) -> void:
 	if not is_active: return
-	selected_button = index
-	_reset_spring()
-	_update_button_states()
+	if selected_button != index:
+		selected_button = index
+		MenuManager.play_hover_sound()
+		_reset_spring()
+		_update_button_states()
 
 func _on_button_pressed(index: int) -> void:
 	if not is_active: return
+	MenuManager.play_press_sound()
 	option_selected.emit(index)

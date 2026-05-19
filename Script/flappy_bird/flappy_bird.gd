@@ -23,6 +23,8 @@ var cam_overides: Dictionary = {
 @onready var counter: Label = $Control/MarginContainer/VBoxContainer/Counter
 @onready var restart_prompt: Label = $Control/MarginContainer/VBoxContainer/MarginContainer/RestartPrompt
 @onready var animation_player: AnimationPlayer = $"Player/Facing/the fool/AnimationPlayer"
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 
 var game_over : bool = false
 var score: int = 0
@@ -112,6 +114,8 @@ func _trigger_game_over() -> void:
 	# Play death animation
 	if animation_player:
 		animation_player.play("dead")
+	
+	$AudioStreamPlayer.play()
 
 
 func _spawn_pipe_pair() -> void:

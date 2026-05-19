@@ -40,6 +40,8 @@ func _ready() -> void:
 	
 	MenuManager.options_opened.connect(_on_options_opened)
 	MenuManager.options_closed.connect(_on_options_closed)
+	
+	MenuManager.play_main_menu_music()
 
 func _on_options_opened() -> void:
 	if not is_busy and MenuManager.current_game_scene == null:
@@ -64,6 +66,7 @@ func _on_resume_menu() -> void:
 	MenuManager.current_game_scene = null
 	_apply_cam_overides(menu_cam_overides)
 	_show_ui()
+	MenuManager.play_main_menu_music()
 
 func _apply_cam_overides(current_cam) -> void:
 	target_cam_rotation = current_cam["rotation"]
@@ -74,6 +77,7 @@ func _on_play_pressed() -> void:
 	is_busy = true
 	_hide_ui()
 	MenuManager.is_game_active = true
+	MenuManager.play_game_music()
 	
 	var game_scene = load(levels[current_level]).instantiate()
 	current_level = (current_level+1) % len(levels)

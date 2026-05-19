@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://ct3fm6t4vtop" path="res://Assets/MissingMaterial.tres" id="2_w821v"]
 [ext_resource type="PackedScene" uid="uid://cie7328pgcevi" path="res://Scenes/the_fool.tscn" id="4_hrnci"]
 [ext_resource type="PackedScene" uid="uid://pipe001" path="res://Scenes/pipe.tscn" id="5_pipe001"]
+[ext_resource type="AudioStream" uid="uid://p5wqbnvx4cft" path="res://Assets/Sounds/Dead.ogg" id="6_clyin"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kew4r"]
 size = Vector3(1, 0.15551758, 0.94589037)
@@ -148,12 +149,13 @@ layout_mode = 2
 theme_override_constants/margin_top = 50
 
 [node name="RestartPrompt" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer" unique_id=460062181]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Press a Key"
 horizontal_alignment = 1
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1116973105]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.13738, 0.57494444, 0)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=785744925]
+stream = ExtResource("6_clyin")
 
 [editable path="Player/Facing/the fool"]

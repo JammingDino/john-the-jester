@@ -8,12 +8,65 @@ var options_menu_instance: Control = null
 var is_game_active: bool = false 
 var current_game_scene: Node = null
 
+var hover_player: AudioStreamPlayer
+var press_player: AudioStreamPlayer
+var music_player: AudioStreamPlayer
+
+var ui_music: AudioStream
+var game_music_1: AudioStream
+var game_music_2: AudioStream
+
+var music_acceleration: float = 0.003
+
 signal options_opened
 signal options_closed
 
 func _ready() -> void:
 	# Ensure the manager continues running when the tree is paused!
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	hover_player = AudioStreamPlayer.new()
+	hover_player.stream = load("res://Assets/Sounds/UI_Hover.ogg")
+	hover_player.bus = "SFX"
+	add_child(hover_player)
+	
+	press_player = AudioStreamPlayer.new()
+	press_player.stream = load("res://Assets/Sounds/UI_Press.ogg")
+	press_player.bus = "SFX"
+	add_child(press_player)
+	
+	music_player = AudioStreamPlayer.new()
+	music_player.bus = "Music"
+	add_child(music_player)
+	
+	ui_music = load("res://Assets/Music/UI_Track.ogg")
+	game_music_1 = load("res://Assets/Music/Game_Track_1.ogg")
+	game_music_2 = load("res://Assets/Music/Game_Track_2.ogg")
+
+func _process(delta: float) -> void:
+	# Gradually speed up the music if we are actively playing the game, capping at 2x speed
+	if is_game_active and not get_tree().paused:
+		music_player.pitch_scale = min(music_player.pitch_scale + music_acceleration * delta, 2.0)
+
+func play_main_menu_music() -> void:
+	if music_player.stream != ui_music or not music_player.playing:
+		music_player.stream = ui_music
+		music_player.pitch_scale = 1.0
+		music_player.play()
+
+func play_game_music() -> void:
+	music_player.pitch_scale = 1.0
+	if randf() > 0.5:
+		music_player.stream = game_music_1
+	else:
+		music_player.stream = game_music_2
+	music_player.play()
+
+func play_hover_sound() -> void:
+	if hover_player: hover_player.play()
+
+func play_press_sound() -> void:
+	if press_player: press_player.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Only allow pausing if we are actually playing a game (not on the main menu)

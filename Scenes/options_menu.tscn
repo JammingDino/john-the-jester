@@ -28,12 +28,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -202.5
-offset_top = -117.0
+offset_top = -210.0
 offset_right = 202.5
-offset_bottom = 117.0
+offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=844807456]
 layout_mode = 2
@@ -70,15 +70,25 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Audio" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1309389564]
+[node name="Mute" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1309389564]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Audio"
+text = "Mute: OFF"
 
-[node name="Graphics" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1348655082]
+[node name="SFX" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1348655082]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Graphics"
+text = "SFX: 100%"
+
+[node name="Music" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=200000001]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music: 100%"
+
+[node name="Fullscreen" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=200000002]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Fullscreen: OFF"
 
 [node name="Back" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=369638477]
 layout_mode = 2

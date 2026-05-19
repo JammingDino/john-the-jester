@@ -17,7 +17,7 @@ var active_tomatoes: Array[Node3D] = []
 @onready var counter: Label = $Control/MarginContainer/VBoxContainer/Counter
 @onready var restart_prompt: Label = $Control/MarginContainer/VBoxContainer/MarginContainer/RestartPrompt
 @onready var animation_player: AnimationPlayer = $"Player/Facing/the fool/AnimationPlayer"
-
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 const SAVE_FILE = "user://tomato_highscore.save"
 
@@ -145,6 +145,7 @@ func _trigger_game_over() -> void:
 	restart_prompt.visible = true
 	
 	animation_player.play("dead")
+	audio_stream_player.play()
 
 func spawn_tomato() -> void:
 	if not tomato_scene:
