@@ -43,9 +43,13 @@ pipe_scene = ExtResource("5_pipe001")
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1301522147]
 material_override = ExtResource("2_w821v")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1938086071]
-radius = 3.0
-height = 0.1
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1248815578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.465088, 0)
+size = Vector3(1, 5.069824, 8)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=766633566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5414429, 0, 0)
+size = Vector3(8, 0.1, 8)
 
 [node name="Player" type="Node3D" parent="." unique_id=1933811622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -60,10 +64,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2577336)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017233491, -0.22682723)
 shape = SubResource("BoxShape3D_kew4r")
 
-[node name="the fool" parent="Player/Facing" unique_id=1594532261 instance=ExtResource("4_hrnci")]
+[node name="the fool" parent="Player/Facing" unique_id=13468283 instance=ExtResource("4_hrnci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.505, 0)
 
-[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(1594532261, 1231401966) index="0" unique_id=1190954239]
+[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(13468283, 287561786) index="0" unique_id=1194722003]
 bones/0/position = Vector3(0, 0.45669508, 0)
 bones/0/rotation = Quaternion(0.67607373, 0, -1.5011852e-16, 0.736834)
 bones/1/rotation = Quaternion(0.06819067, 8.362394e-08, 5.7156755e-09, 0.9976724)
@@ -114,7 +118,7 @@ bones/33/position = Vector3(-0.06677093, -0.030611545, -0.087684914)
 bones/34/position = Vector3(-0.070499726, 0.36697325, -0.37847435)
 bones/34/rotation = Quaternion(0.0042102817, -0.83603734, -0.548619, 0.0064160237)
 
-[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=226332638]
+[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=1917874533]
 autoplay = &"flying"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=307007021]

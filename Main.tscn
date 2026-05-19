@@ -94,6 +94,7 @@ size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="Coutroom" parent="SubViewportContainer/SubViewport" unique_id=1316503235 instance=ExtResource("2_r0du0")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1444830718]
 environment = SubResource("Environment_cm0pq")
@@ -101,6 +102,11 @@ environment = SubResource("Environment_cm0pq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1081048652]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+shadow_bias = 0.2
+shadow_blur = 0.1
+directional_shadow_split_1 = 0.036
+directional_shadow_blend_splits = true
+sky_mode = 1
 
 [node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1837427807 groups=["CamPivot"]]
 

@@ -14,7 +14,8 @@ var animated_menu: AnimatedMenu
 var current_level = 0
 @onready var levels: Array[String] = [
 	"res://Scenes/tomato_catcher.tscn",
-	"res://Scenes/flappy_bird.tscn"
+	"res://Scenes/flappy_bird.tscn",
+	"res://Scenes/pong.tscn"
 ]
 
 var menu_cam_overides: Dictionary = {
