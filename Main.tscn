@@ -4,9 +4,19 @@
 [ext_resource type="Script" uid="uid://dk35fctqxji3h" path="res://Script/main.gd" id="1_r0du0"]
 [ext_resource type="PackedScene" uid="uid://lvr4pme8a85v" path="res://Scenes/coutroom.tscn" id="2_r0du0"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cm0pq"]
+
+[sub_resource type="Sky" id="Sky_trn2v"]
+sky_material = SubResource("ProceduralSkyMaterial_cm0pq")
+
 [sub_resource type="Environment" id="Environment_cm0pq"]
+background_mode = 2
+sky = SubResource("Sky_trn2v")
 ssao_enabled = true
 ssil_enabled = true
+glow_enabled = true
+glow_bloom = 0.4
+glow_blend_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_uu6xs"]
 flip_faces = true
@@ -92,11 +102,16 @@ environment = SubResource("Environment_cm0pq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1081048652]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+shadow_bias = 0.2
+shadow_blur = 0.1
+directional_shadow_split_1 = 0.036
+directional_shadow_blend_splits = true
+sky_mode = 1
 
 [node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1837427807 groups=["CamPivot"]]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Pivot" unique_id=1802090236]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 2.456744e-07, 3.711636, 3.5949063)
+transform = Transform3D(1, 0, 0, 0, 0.7660444, 0.6427875, 0, -0.6427875, 0.7660444, 0, 3.712, 4)
 projection = 1
 size = 4.0
 near = 0.001
@@ -126,7 +141,7 @@ theme_override_constants/separation = 50
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1540905901]
 layout_mode = 2
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 112
 text = "John The Jester"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -161,14 +176,17 @@ theme_override_constants/separation = 10
 
 [node name="Play" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=39419592]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Play"
 
 [node name="Options" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=725027501]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Options"
 
 [node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1825176112]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [connection signal="mouse_entered" from="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]

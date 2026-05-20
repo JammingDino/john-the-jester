@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bjdyh8npbd505"]
+
+[ext_resource type="PackedScene" uid="uid://b04f2dwtdjm54" path="res://Assets/dan tomato.glb" id="1_jy5vw"]
+
+[node name="dan tomato" unique_id=851920666 instance=ExtResource("1_jy5vw")]
+
+[node name="Icosphere" parent="." index="0" unique_id=376006366]
+transform = Transform3D(0.099, 0, 0, 0, 0.099, 0, 0, 0, 0.099, 0, 0, 0)

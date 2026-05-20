@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c1rbqq3nr3fae"]
+
+[ext_resource type="PackedScene" uid="uid://cvh2e1k1dy7x3" path="res://Assets/oscar tomato.glb" id="1_rcx53"]
+
+[node name="oscar tomato" unique_id=1845209466 instance=ExtResource("1_rcx53")]
+transform = Transform3D(0.062, 0, 0, 0, 0.062, 0, 0, 0, 0.062, 0, 0, 0)

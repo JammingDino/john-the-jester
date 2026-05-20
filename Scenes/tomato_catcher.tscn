@@ -3,16 +3,14 @@
 [ext_resource type="Material" uid="uid://ct3fm6t4vtop" path="res://Assets/MissingMaterial.tres" id="1_kew4r"]
 [ext_resource type="Script" uid="uid://dno033qeg05re" path="res://Script/tomato_catcher/tomato_catcher.gd" id="1_tomato_script"]
 [ext_resource type="Script" uid="uid://bg0yfklbthd84" path="res://Script/tomato_catcher/player.gd" id="2_fo0l6"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kew4r"]
-radius = 0.2
-height = 1.0
+[ext_resource type="PackedScene" uid="uid://cie7328pgcevi" path="res://Scenes/the_fool.tscn" id="4_bhtul"]
+[ext_resource type="AudioStream" uid="uid://p5wqbnvx4cft" path="res://Assets/Sounds/Dead.ogg" id="5_2xaur"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kew4r"]
 size = Vector3(0.4, 0.3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kew4r"]
-size = Vector3(1, 0.96728516, 0.23776245)
+size = Vector3(1, 0.96728516, 0.35143661)
 
 [sub_resource type="Animation" id="Animation_kew4r"]
 resource_name = "Bite"
@@ -86,14 +84,14 @@ material_override = ExtResource("1_kew4r")
 radius = 3.0
 height = 0.1
 
-[node name="Player" type="MeshInstance3D" parent="." unique_id=2125569772]
+[node name="Player" type="Node3D" parent="." unique_id=1933811622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
-mesh = SubResource("CapsuleMesh_kew4r")
 script = ExtResource("2_fo0l6")
 
 [node name="Facing" type="Node3D" parent="Player" unique_id=400386686]
 
 [node name="Visuals" type="Node3D" parent="Player/Facing" unique_id=1216685091]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Facing/Visuals" unique_id=771743059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.32544047)
@@ -111,9 +109,55 @@ mesh = SubResource("BoxMesh_kew4r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2577336)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Facing/Area3D" unique_id=1265427021]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016357422, -0.013748169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016357422, -0.026994705)
 shape = SubResource("BoxShape3D_kew4r")
 disabled = true
+
+[node name="the fool" parent="Player/Facing" unique_id=1594532261 instance=ExtResource("4_bhtul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.505, 0)
+
+[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(1594532261, 1231401966) index="0" unique_id=1190954239]
+bones/0/position = Vector3(0, 0.45669508, 0)
+bones/5/rotation = Quaternion(-0.05708341, -0.05873465, -0.6801352, 0.72849697)
+bones/6/rotation = Quaternion(-0.004129299, -0.0001944916, -0.05102823, 0.9986887)
+bones/7/position = Vector3(2.8668115e-09, 0.101547025, -0.04666107)
+bones/7/rotation = Quaternion(-1.3226646e-07, -0.25894067, 0.9658933, 1.9549475e-08)
+bones/8/rotation = Quaternion(-0.12422238, -3.0481573e-08, -2.2573108e-08, 0.99225444)
+bones/9/position = Vector3(-9.885962e-10, 0.08867284, 0.0160916)
+bones/10/position = Vector3(-9.720492e-10, 0.062805764, 0.015824402)
+bones/11/position = Vector3(0.02333499, 0.076519385, 0.01608181)
+bones/12/rotation = Quaternion(-0.057083454, 0.058734603, 0.68013513, 0.728497)
+bones/13/rotation = Quaternion(-0.0041293027, 0.00019448409, 0.051028218, 0.9986887)
+bones/14/position = Vector3(-0.023334986, 0.076519385, 0.016081804)
+bones/16/rotation = Quaternion(0.007536245, -0.002114639, 0.1623903, 0.9866956)
+bones/17/rotation = Quaternion(0.017782662, 2.4259572e-05, 0.0019550861, 0.99983996)
+bones/18/rotation = Quaternion(-0.015090189, -0.00021131166, -0.01399948, 0.9997881)
+bones/19/rotation = Quaternion(0.027504245, -0.0015428303, -0.05598875, 0.9980513)
+bones/21/rotation = Quaternion(0.0075362334, 0.002114626, -0.16239037, 0.9866956)
+bones/22/rotation = Quaternion(0.017782658, -2.4258772e-05, -0.001955093, 0.99983996)
+bones/23/rotation = Quaternion(-0.015090189, 0.00021131123, 0.01399948, 0.9997881)
+bones/24/rotation = Quaternion(0.027504256, 0.0015428284, 0.05598872, 0.9980513)
+bones/25/rotation = Quaternion(0.01676626, 0.020660007, 0.9990959, -0.033159297)
+bones/25/scale = Vector3(1.0000196, 1.0000002, 1.0000077)
+bones/26/rotation = Quaternion(-0.03458233, -0.00016287316, -0.025114644, 0.99908626)
+bones/26/scale = Vector3(1.0000002, 0.9999999, 0.99999964)
+bones/27/rotation = Quaternion(0.6657368, 0.008354189, -0.017129064, 0.7459433)
+bones/27/scale = Vector3(1.0000081, 1.0000011, 0.9999999)
+bones/28/rotation = Quaternion(-0.016766245, 0.020660006, 0.9990959, 0.033159297)
+bones/28/scale = Vector3(1.0000196, 1.0000002, 1.0000077)
+bones/29/rotation = Quaternion(-0.034582328, 0.00016287313, 0.025114644, 0.99908626)
+bones/29/scale = Vector3(1.0000002, 0.9999999, 0.99999964)
+bones/30/rotation = Quaternion(0.6657368, -0.008354177, 0.017129054, 0.7459433)
+bones/30/scale = Vector3(1.0000081, 1.0000011, 0.9999999)
+bones/31/position = Vector3(0.06677093, 0.27005994, 0.1648127)
+bones/32/position = Vector3(0.070499726, 0.03141713, -0.009694925)
+bones/32/rotation = Quaternion(0.0054758065, -0.70059, 0.71352285, -0.005376555)
+bones/33/position = Vector3(-0.06677093, 0.27005994, 0.1648127)
+bones/34/position = Vector3(-0.070499726, 0.03141713, -0.009694925)
+bones/34/rotation = Quaternion(-0.0054758065, -0.70059, 0.71352285, 0.005376555)
+
+[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=226332638]
+autoplay = &"about to eat tomato"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=307007021]
 libraries/ = SubResource("AnimationLibrary_jpsqq")
@@ -138,7 +182,7 @@ layout_mode = 2
 
 [node name="Counter" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=1604198786]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 text = "0 / 100"
 horizontal_alignment = 1
 
@@ -149,5 +193,11 @@ theme_override_constants/margin_top = 50
 [node name="RestartPrompt" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer" unique_id=460062181]
 visible = false
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Press keys"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=799853560]
+stream = ExtResource("5_2xaur")
+
+[editable path="Player/Facing/the fool"]

@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://c478xjexkr882"]
+
+[ext_resource type="Script" uid="uid://c5qark5ijqh0y" path="res://Script/flappy_bird/flappy_bird.gd" id="1_3yi32"]
+[ext_resource type="Script" uid="uid://0irlodbtfj7o" path="res://Script/flappy_bird/player.gd" id="2_uosvl"]
+[ext_resource type="Material" uid="uid://ct3fm6t4vtop" path="res://Assets/MissingMaterial.tres" id="2_w821v"]
+[ext_resource type="PackedScene" uid="uid://cie7328pgcevi" path="res://Scenes/the_fool.tscn" id="4_hrnci"]
+[ext_resource type="PackedScene" uid="uid://pipe001" path="res://Scenes/pipe.tscn" id="5_pipe001"]
+[ext_resource type="AudioStream" uid="uid://p5wqbnvx4cft" path="res://Assets/Sounds/Dead.ogg" id="6_clyin"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kew4r"]
+size = Vector3(1, 0.15551758, 0.94589037)
+
+[sub_resource type="Animation" id="Animation_kew4r"]
+resource_name = "Bite"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facing/Area3D/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10269565),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_fo0l6"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jpsqq"]
+_data = {
+&"Bite": SubResource("Animation_kew4r"),
+&"RESET": SubResource("Animation_fo0l6")
+}
+
+[node name="FlappyBird" type="Node3D" unique_id=414616707]
+script = ExtResource("1_3yi32")
+pipe_scene = ExtResource("5_pipe001")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1301522147]
+material_override = ExtResource("2_w821v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1248815578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.465088, 0)
+size = Vector3(1, 5.069824, 8)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=766633566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5414429, 0, 0)
+size = Vector3(8, 0.1, 8)
+
+[node name="Player" type="Node3D" parent="." unique_id=1933811622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("2_uosvl")
+
+[node name="Facing" type="Node3D" parent="Player" unique_id=400386686]
+
+[node name="Area3D" type="Area3D" parent="Player/Facing" unique_id=449243317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2577336)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Facing/Area3D" unique_id=1265427021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017233491, -0.22682723)
+shape = SubResource("BoxShape3D_kew4r")
+
+[node name="the fool" parent="Player/Facing" unique_id=13468283 instance=ExtResource("4_hrnci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.505, 0)
+
+[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(13468283, 287561786) index="0" unique_id=1194722003]
+bones/0/position = Vector3(0, 0.45669508, 0)
+bones/0/rotation = Quaternion(0.67607373, 0, -1.5011852e-16, 0.736834)
+bones/1/rotation = Quaternion(0.06819067, 8.362394e-08, 5.7156755e-09, 0.9976724)
+bones/2/rotation = Quaternion(0.05096023, 2.4631e-08, 9.7997e-09, 0.99870074)
+bones/3/rotation = Quaternion(-0.24581228, -7.5376605e-08, -3.4217457e-08, 0.9693175)
+bones/4/rotation = Quaternion(-0.16776663, 4.5426212e-08, -1.8038e-08, 0.9858268)
+bones/5/rotation = Quaternion(0.03584531, -0.15686934, -0.7603871, 0.6292206)
+bones/6/rotation = Quaternion(0.20910639, -0.0046853195, -0.2829476, 0.9360519)
+bones/7/position = Vector3(3.460371e-09, 0.08160684, -0.056322213)
+bones/7/rotation = Quaternion(-1.3226646e-07, -0.25894067, 0.9658933, 1.9549475e-08)
+bones/8/rotation = Quaternion(-0.006712041, -3.0718827e-08, -1.21968e-09, 0.99997747)
+bones/9/position = Vector3(-1.282983e-09, 0.09180845, 0.020882417)
+bones/9/rotation = Quaternion(-2.19989e-07, 0.81025225, 0.58608145, -2.543516e-07)
+bones/10/position = Vector3(-1.8306909e-09, 0.06752432, 0.029796235)
+bones/10/rotation = Quaternion(-5.00207e-07, 0.8572304, 0.5149331, -7.800479e-07)
+bones/11/position = Vector3(0.02333499, 0.080439664, 0.025178771)
+bones/11/rotation = Quaternion(0.35319343, 0.5704461, 0.41784203, 0.6125795)
+bones/12/rotation = Quaternion(0.057162035, 0.17879546, 0.7752118, 0.60316783)
+bones/13/rotation = Quaternion(0.20673817, 0.004635618, 0.280405, 0.9373424)
+bones/14/position = Vector3(-0.023334993, 0.08043968, 0.025178751)
+bones/14/rotation = Quaternion(0.35319346, -0.57044613, -0.4178421, 0.6125795)
+bones/15/rotation = Quaternion(-0.01631745, -0.046955783, 0.8700547, -0.49044237)
+bones/16/rotation = Quaternion(0.32548127, -0.5894094, 0.030302804, 0.73874235)
+bones/17/rotation = Quaternion(0.019827643, -0.0012125184, -0.1370816, 0.9903606)
+bones/18/rotation = Quaternion(-0.013421382, -0.0013395527, -0.11303599, 0.9934994)
+bones/19/rotation = Quaternion(0.027504245, -0.001542826, -0.05598875, 0.9980513)
+bones/20/rotation = Quaternion(0.016317263, -0.046955876, 0.8700547, 0.4904423)
+bones/21/rotation = Quaternion(0.3442257, 0.56796926, -0.0075196326, 0.7475715)
+bones/22/rotation = Quaternion(0.021372877, 0.00026958738, 0.08670247, 0.99600494)
+bones/23/rotation = Quaternion(-0.008411818, 0.0010730494, 0.1707651, 0.98527527)
+bones/24/rotation = Quaternion(0.027504243, 0.001542823, 0.055988774, 0.9980513)
+bones/25/rotation = Quaternion(-0.01191978, -0.064239256, 0.9914199, -0.11321619)
+bones/25/scale = Vector3(1.0000194, 1.0000001, 1.0000081)
+bones/26/rotation = Quaternion(-0.24579524, -0.0001556594, -0.17850381, 0.95274407)
+bones/26/scale = Vector3(0.99999744, 0.9999975, 1.0000004)
+bones/27/rotation = Quaternion(0.31458905, 0.043586183, 0.068906814, 0.9457198)
+bones/27/scale = Vector3(1.0000113, 1.0000067, 0.9999909)
+bones/28/rotation = Quaternion(-0.01236118, 0.2337822, 0.9626825, 0.13577722)
+bones/28/scale = Vector3(1.0000197, 0.99999845, 1.0000087)
+bones/29/rotation = Quaternion(-0.3063753, 0.00015149686, 0.222499, 0.9255423)
+bones/29/scale = Vector3(0.99999994, 0.99999505, 1.0000007)
+bones/30/rotation = Quaternion(0.15578067, -0.02374078, -0.091366574, 0.9832705)
+bones/30/scale = Vector3(1.000011, 1.0000085, 0.99998987)
+bones/31/position = Vector3(0.06677093, -0.018983394, -0.16243751)
+bones/32/position = Vector3(0.070499726, 0.6045202, -0.38511905)
+bones/32/rotation = Quaternion(-0.004668005, -0.79369897, -0.6082625, -0.0060911034)
+bones/33/position = Vector3(-0.06677093, -0.030611545, -0.087684914)
+bones/34/position = Vector3(-0.070499726, 0.36697325, -0.37847435)
+bones/34/rotation = Quaternion(0.0042102817, -0.83603734, -0.548619, 0.0064160237)
+
+[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=1917874533]
+autoplay = &"flying"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=307007021]
+libraries/ = SubResource("AnimationLibrary_jpsqq")
+
+[node name="Control" type="Control" parent="." unique_id=892957402]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1960863488]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1260828399]
+layout_mode = 2
+
+[node name="Counter" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=1604198786]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "0 / 100"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=853494532]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="RestartPrompt" type="Label" parent="Control/MarginContainer/VBoxContainer/MarginContainer" unique_id=460062181]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Press a Key"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=785744925]
+stream = ExtResource("6_clyin")
+
+[editable path="Player/Facing/the fool"]
