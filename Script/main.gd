@@ -106,8 +106,8 @@ func _on_menu_option_selected(index: int) -> void:
 
 func _process(delta: float) -> void:
 
-	camera_3d.position = camera_3d.position.lerp(target_cam_distance, delta * 10.0)
-	camera_3d.rotation_degrees = camera_3d.rotation_degrees.lerp(target_cam_rotation, delta * 10.0)
+	camera_3d.position = camera_3d.position.lerp(target_cam_distance, delta * 2.0)
+	camera_3d.rotation_degrees = camera_3d.rotation_degrees.lerp(target_cam_rotation, delta * 2.0)
 	
 	if target_cam_spinning:
 		animation_player.play("loop")

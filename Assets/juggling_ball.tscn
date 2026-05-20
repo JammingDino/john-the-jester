@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://h3ljvv1jm6fx"]
+
+[ext_resource type="PackedScene" uid="uid://bf54obgrugl5o" path="res://Assets/juggling ball.glb" id="1_1cfq6"]
+
+[node name="juggling ball" unique_id=123110367 instance=ExtResource("1_1cfq6")]
+
+[node name="Cube" parent="." index="0" unique_id=1500796757]
+transform = Transform3D(0.123, 0, 0, 0, 0.123, 0, 0, 0, 0.123, 0, 0, 0)

@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	self.position.z += velocity * delta
 	animation_tree.set("parameters/blend_position", abs(velocity))
 
-	var target_rot_y = 180.0 - ((3.0 + velocity) * 30.0)
+	var target_rot_y = ((3.0 + velocity) * 30.0)
 	var displacement = wrapf(target_rot_y - current_rot_y, -180.0, 180.0)
 	rotation_velocity += displacement * SPRING_STRENGTH * delta
 	rotation_velocity *= pow(DAMPING, delta * REF_FPS)

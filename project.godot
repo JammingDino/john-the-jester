@@ -36,6 +36,7 @@ CamPivot=""
 
 [gui]
 
+fonts/dynamic_fonts/use_oversampling=false
 theme/custom_font="uid://csns52fioiejb"
 
 [input]

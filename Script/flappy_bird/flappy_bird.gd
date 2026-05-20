@@ -31,11 +31,14 @@ var score: int = 0
 var high_score: int = 0
 var pipe_timer: float = 0.0
 var active_pipes: Array[Node3D] = []
+var active_backgrounds: Array[Node3D] = []
 
 var current_pipe_speed: float = 2.5
 var current_pipe_gap: float = 2.0
 
 const SAVE_FILE = "user://flappy_bird_highscore.save"
+const WALL_BACKGROUND = preload("uid://bm74jd3l35nls")
+const BG_LENGTH: float = 5.9
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,6 +52,13 @@ func _ready() -> void:
 	var player_area = player.get_node_or_null("Facing/Area3D")
 	if player_area:
 		player_area.area_entered.connect(_on_player_area_entered)
+		
+	# Spawn initial backgrounds
+	for i in range(4):
+		var bg = WALL_BACKGROUND.instantiate() as Node3D
+		add_child(bg)
+		bg.position.z = (i - 1) * BG_LENGTH
+		active_backgrounds.append(bg)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -79,6 +89,16 @@ func _process(delta: float) -> void:
 				active_pipes.remove_at(i)
 		else:
 			active_pipes.remove_at(i)
+	
+	# Move backgrounds
+	for bg in active_backgrounds:
+		bg.position.z -= current_pipe_speed * delta * 0.2
+		if bg.position.z < -BG_LENGTH * 1.5:
+			var max_z = -1000.0
+			for other_bg in active_backgrounds:
+				if other_bg.position.z > max_z:
+					max_z = other_bg.position.z
+			bg.position.z = max_z + BG_LENGTH
 	
 	# Check if player fell too low
 	if player.position.y < 0.1:
@@ -126,7 +146,7 @@ func _spawn_pipe_pair() -> void:
 	var gap_y = randf_range(min_pipe_height, max_pipe_height)
 	
 	# Fixed pipe size so they don't stretch weirdly, making gaps inconsistent
-	var pipe_size_y = 15.0
+	var pipe_size_y = 1
 	var half_pipe = pipe_size_y / 2.0
 	var half_gap = current_pipe_gap / 2.0
 	
@@ -136,7 +156,7 @@ func _spawn_pipe_pair() -> void:
 	active_pipes.append(top_pipe)
 	# Position the bottom edge of the top pipe at gap_y + half_gap
 	top_pipe.global_position = Vector3(0, gap_y + half_gap + half_pipe, 10)
-	top_pipe.scale = Vector3(1, pipe_size_y, 1)
+	top_pipe.scale = Vector3(1, -pipe_size_y, 1)
 	top_pipe.add_to_group("pipes")
 	
 	# Create bottom pipe

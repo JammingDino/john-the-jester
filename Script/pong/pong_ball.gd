@@ -9,9 +9,18 @@ const MAX_FALL_SPEED: float = 4.0
 const LAUNCH_SPEED: float = 5.0
 const H_DAMPING: float = 0.8
 const MIN_H_SPEED: float = 1.0
+var rand_rotation: Vector3 = Vector3.ZERO
+
+var models : Array = [
+	"res://Assets/juggling_ball.tscn",
+	"res://Assets/juggling_pin.tscn"
+]
 
 func _ready() -> void:
 	_launch()
+	var model = load(models[randi_range(0, (len(models)-1))]).instantiate()
+	self.add_child(model)
+	rand_rotation = Vector3(randf()-0.5, randf()-0.5, randf()-0.5)
 
 func _launch() -> void:
 	# Random angle between 40-70 degrees so neither axis is near-zero
@@ -31,9 +40,10 @@ func _physics_process(delta: float) -> void:
 		position.z = sign(position.z) * width
 
 	position += velocity * delta
+	rotation += rand_rotation * delta * 10
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("PlayerArea"):
-		velocity.y = 4
+		velocity.y = 5
 		velocity.z += randf_range(-1.0, 1.0)
 		paddle_hit.emit()

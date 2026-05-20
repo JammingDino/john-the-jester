@@ -113,10 +113,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016357422, -0.026994705
 shape = SubResource("BoxShape3D_kew4r")
 disabled = true
 
-[node name="the fool" parent="Player/Facing" unique_id=1594532261 instance=ExtResource("4_bhtul")]
+[node name="the fool" parent="Player/Facing" unique_id=13468283 instance=ExtResource("4_bhtul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.505, 0)
 
-[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(1594532261, 1231401966) index="0" unique_id=1190954239]
+[node name="Skeleton3D" parent="Player/Facing/the fool/Armature" parent_id_path=PackedInt32Array(13468283, 1397133913) index="0" unique_id=1741384943]
 bones/0/position = Vector3(0, 0.45669508, 0)
 bones/5/rotation = Quaternion(-0.05708341, -0.05873465, -0.6801352, 0.72849697)
 bones/6/rotation = Quaternion(-0.004129299, -0.0001944916, -0.05102823, 0.9986887)
@@ -156,7 +156,7 @@ bones/33/position = Vector3(-0.06677093, 0.27005994, 0.1648127)
 bones/34/position = Vector3(-0.070499726, 0.03141713, -0.009694925)
 bones/34/rotation = Quaternion(-0.0054758065, -0.70059, 0.71352285, 0.005376555)
 
-[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=226332638]
+[node name="AnimationPlayer" parent="Player/Facing/the fool" index="1" unique_id=243393446]
 autoplay = &"about to eat tomato"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=307007021]

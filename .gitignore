@@ -2,3 +2,4 @@
 .godot/
 .kilo/
 /android/
+*.import

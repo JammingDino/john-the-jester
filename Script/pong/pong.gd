@@ -10,27 +10,37 @@ var cam_overides: Dictionary = {
 @onready var restart_prompt: Label = $Control/MarginContainer/VBoxContainer/MarginContainer/RestartPrompt
 @onready var animation_player: AnimationPlayer = $"Player/Facing/the fool/AnimationPlayer"
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var pong_ball = $PongBall
+
+var pong_balls : Array = []
 
 const SAVE_FILE = "user://pong_highscore.save"
+const PONG_BALL = preload("uid://phvov6ypkqt2")
 
 var score: int = 0
 var high_score: int = 0
 var game_over: bool = false
 
+func _add_new_ball() -> void:
+	var new_ball = PONG_BALL.instantiate()
+	new_ball.position.y = 6
+	new_ball.paddle_hit.connect(_on_paddle_hit)
+	pong_balls.append(new_ball)
+	self.add_child(new_ball)
+
 func _ready() -> void:
 	load_high_score()
 	update_score_display()
-	pong_ball.paddle_hit.connect(_on_paddle_hit)
+	_add_new_ball()
 
 func _process(_delta: float) -> void:
 	if game_over:
 		if Input.is_action_just_pressed("ui_accept"):
 			queue_free()
 		return
-
-	if pong_ball.position.y < 0.2:
-		_trigger_game_over()
+	
+	for pong_ball in pong_balls:
+		if pong_ball.position.y < 0.2:
+			_trigger_game_over()
 
 func _trigger_game_over() -> void:
 	game_over = true
@@ -53,6 +63,9 @@ func _trigger_game_over() -> void:
 func _on_paddle_hit() -> void:
 	score += 1
 	update_score_display()
+	
+	if score % 15 == 0:
+		_add_new_ball()
 
 	if counter:
 		counter.pivot_offset = counter.size / 2.0

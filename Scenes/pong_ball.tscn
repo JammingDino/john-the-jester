@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://phvov6ypkqt2"]
+
+[ext_resource type="Script" uid="uid://ol6op68fwm05" path="res://Script/pong/pong_ball.gd" id="1_hvie4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4c4gb"]
+radius = 0.2
+
+[node name="PongBall" type="Area3D" unique_id=94120604]
+script = ExtResource("1_hvie4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2037958302]
+shape = SubResource("SphereShape3D_4c4gb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

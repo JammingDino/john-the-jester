@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c521bg4u6ba78"]
+
+[ext_resource type="PackedScene" uid="uid://blq81txcg53c6" path="res://Assets/juggling pin.glb" id="1_xsgdn"]
+
+[node name="juggling pin" unique_id=1891936036 instance=ExtResource("1_xsgdn")]
+
+[node name="Cube" parent="." index="0" unique_id=587285179]
+transform = Transform3D(0.083, 0, 0, 0, 0.083, 0, 0, 0, 0.083, 0, -0.42403674, 0)
